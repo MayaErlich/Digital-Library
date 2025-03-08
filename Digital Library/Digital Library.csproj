@@ -13,4 +13,11 @@
     <PackageReference Include="MySql.Data" Version="9.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\" />
+    <Folder Include="Services\" />
+    <Folder Include="View\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

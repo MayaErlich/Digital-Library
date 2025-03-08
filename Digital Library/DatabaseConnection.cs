@@ -16,6 +16,23 @@ namespace Digital_Library
             return new MySqlConnection(connectionString);
         }
 
+        public void TestConnection()
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    Console.WriteLine("✅ Connection successful!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("❌ Connection failed: " + ex.Message);
+                }
+            }
+        }
+
+
         public DataTable GetBooks()
         {
             using (MySqlConnection conn = GetConnection())
@@ -24,7 +41,7 @@ namespace Digital_Library
                 try
                 {
                     conn.Open();
-                    string query = "SELECT * FROM book";
+                    string query = "USE Library; SELECT * FROM books"; 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     adapter.Fill(booksTable);

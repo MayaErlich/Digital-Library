@@ -1,38 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MySql.Data.MySqlClient; 
 
 namespace Digital_Library
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private DatabaseConnection dbconnect;
 
+        public MainWindow()
         {
             InitializeComponent();
-            DatabaseConnection dbconnect = new DatabaseConnection();
+            dbconnect = new DatabaseConnection(); 
+            Loaded += Window_Loaded; 
+        }
 
-             void Window_Loaded(object sender, RoutedEventArgs e)
-            {
-                DataTable books = dbconnect.GetBooks();
-                MessageBox.Show($"Fetched {books.Rows.Count} books from the database!");
-            }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTable books = dbconnect.GetBooks();
+            MessageBox.Show($"Fetched {books.Rows.Count} books from the database!");
+        }
 
+        private void TestConnection_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            db.TestConnection();
         }
     }
 }

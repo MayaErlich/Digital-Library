@@ -1,31 +1,34 @@
-﻿using System;
-using System.Data;
-using System.Windows;
-using MySql.Data.MySqlClient; 
+﻿using System.Windows;
 
 namespace Digital_Library
 {
     public partial class MainWindow : Window
     {
-        private DatabaseConnection dbconnect;
-
         public MainWindow()
         {
             InitializeComponent();
-            dbconnect = new DatabaseConnection(); 
-            Loaded += Window_Loaded; 
+        
+            MainFrame.Content = new HomePageView();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+      
+        private void btnAddBook_Click(object sender, RoutedEventArgs e)
         {
-            DataTable books = dbconnect.GetBooks();
-            MessageBox.Show($"Fetched {books.Rows.Count} books from the database!");
+            MainFrame.Content = new AddBookView(); 
         }
 
-        private void TestConnection_Click(object sender, RoutedEventArgs e)
+
+        private void btnViewLibrary_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseConnection db = new DatabaseConnection();
-            db.TestConnection();
+            ViewLibrary viewLibraryWindow = new ViewLibrary();
+            viewLibraryWindow.Show();
+        }
+
+
+
+        private void btnViewInsights_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new InsightsView();
         }
     }
 }

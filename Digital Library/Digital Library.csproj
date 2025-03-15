@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="Database\" />
     <Folder Include="Services\" />
-    <Folder Include="View\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 

@@ -1,0 +1,14 @@
+﻿<Window x:Class="Digital_Library.ViewLibrary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="View Library" Height="400" Width="600">
+    <Grid>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+            <TextBlock FontSize="24" FontWeight="Bold" Text="Library Books" Margin="0,0,0,20"/>
+
+            <DataGrid x:Name="BooksDataGrid" Width="500" Height="250" AutoGenerateColumns="True" Margin="0,0,0,20"/>
+
+            <Button Content="Close" Width="100" Height="30" Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

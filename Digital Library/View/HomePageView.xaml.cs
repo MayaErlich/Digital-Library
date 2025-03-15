@@ -21,7 +21,7 @@ namespace Digital_Library
         private void btnViewLibrary_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow.MainFrame.Content = new LibraryView(); 
+            mainWindow.MainFrame.Content = new ViewLibrary(); 
         }
 
        

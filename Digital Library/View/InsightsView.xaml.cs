@@ -2,19 +2,18 @@
 using System.Data;
 using System.Windows;
 using Digital_Library.Models;
+using System.Windows.Controls;
+
 
 namespace Digital_Library
 {
-    public partial class InsightsView : Window
+    public partial class InsightsView : Page
     {
         private DatabaseConnection dbconnect;
 
         
         
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close(); // Close the Insights view window
-        }
+       
     }
 }

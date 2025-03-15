@@ -44,7 +44,7 @@ namespace Digital_Library
                 {
                     conn.Open();
                     string query = "SELECT b.Title, b.Author, g.GenreName, b.Length FROM books b " +
-                                   "JOIN genres g ON b.GenreID = g.GenreID";
+                                   "JOIN genre g ON b.GenreID = g.GenreID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
                     adapter.Fill(books);
                 }

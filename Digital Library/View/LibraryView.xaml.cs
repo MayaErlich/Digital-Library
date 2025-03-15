@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Windows;
+using System.Windows.Controls;
 using Digital_Library.Models;
 
 namespace Digital_Library
 {
-    public partial class ViewLibrary : Window
+    public partial class ViewLibrary : Page
     {
         private DatabaseConnection dbconnect;
 
@@ -29,9 +30,6 @@ namespace Digital_Library
             }
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close(); 
-        }
+      
     }
 }

@@ -18,11 +18,7 @@ namespace Digital_Library
         }
 
 
-        private void btnViewLibrary_Click(object sender, RoutedEventArgs e)
-        {
-            ViewLibrary viewLibraryWindow = new ViewLibrary();
-            viewLibraryWindow.Show();
-        }
+      
 
 
 

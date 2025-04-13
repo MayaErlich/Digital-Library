@@ -28,7 +28,7 @@ namespace Digital_Library
         private void btnViewInsights_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow.MainFrame.Content = new InsightsView(); 
+            mainWindow.MainFrame.Content = new InsightsPage(); 
         }
     }
 }

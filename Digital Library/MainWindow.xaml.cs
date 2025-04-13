@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 
+
+
 namespace Digital_Library
 {
     public partial class MainWindow : Window
@@ -24,7 +26,7 @@ namespace Digital_Library
 
         private void btnViewInsights_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new InsightsView();
+            MainFrame.Content = new InsightsPage();
         }
     }
 }

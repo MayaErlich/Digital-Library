@@ -1,9 +1,11 @@
 ﻿using Digital_Library.Models;
 using MySql.Data.MySqlClient;
+using Mysqlx;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -100,6 +102,97 @@ namespace Digital_Library
                 return genreTable;
             }
         }
+
+        public double GetAveragePages()
+        {
+            double avg = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT AVG(Length) FROM books";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        avg = Convert.ToDouble(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+            return avg;
+        }
+        public string GetFavoriteGenre()
+        {
+            string favorite = "N/A";
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"SELECT g.GenreName, COUNT(*) AS Count 
+                             FROM books b
+                             JOIN genre g ON b.GenreID = g.GenreID
+                             GROUP BY g.GenreName
+                             ORDER BY Count DESC
+                             LIMIT 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        favorite = result.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+            return favorite;
+        }
+        public DataTable GetInsights()
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                DataTable insightsTable = new DataTable();
+                try
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT 
+                    ROUND(AVG(length)) AS avgpages,
+                    (
+                        SELECT g.Genrename 
+                        FROM genre g
+                        JOIN books b ON b.genreID = g.genreID
+                        GROUP BY g.Genrename 
+                        ORDER BY COUNT(*) DESC 
+                        LIMIT 1
+                    ) AS favgenre
+                FROM books;
+            ";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    adapter.Fill(insightsTable);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading insight");
+                }
+
+                return insightsTable;
+            }
+        }
+
+
+
 
 
 
